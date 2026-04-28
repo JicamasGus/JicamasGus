@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Digital - Bosque Verde</title>
+    <title>Menú Digital - Jicamas Gus</title>
     <style>
         /* PALETA DE COLORES Y ESTILOS BASE */
         :root {
@@ -33,10 +33,22 @@
         }
 
         .logos-container { display: flex; gap: 10px; align-items: center; justify-content: center; }
-        .logo-tienda { width: 45px; height: 45px; object-fit: contain; background: white; padding: 4px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        /* MODIFICACIÓN: Tamaño de logo aumentado a 70px */
+        .logo-tienda { width: 70px; height: 70px; object-fit: contain; background: white; padding: 4px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
         .texto-header { text-align: center; }
         .texto-header h1 { font-size: 1.5rem; margin-bottom: 0.1rem; }
         .texto-header p { font-size: 0.85rem; opacity: 0.9; }
+        
+        /* NUEVO: Etiqueta de Horario */
+        .horario-header {
+            font-size: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 6px;
+            font-weight: bold;
+        }
 
         /* FILTROS DESLIZABLES */
         .filtro-container {
@@ -181,6 +193,7 @@
             <div class="texto-header">
                 <h1>Jicamas Gus | Punta del Este</h1>
                 <p>Nuestra Especialidad el Cliente</p>
+                <p class="horario-header">🕒 Horario: Todos los dias de 12:30 PM - 7:30 PM</p>
             </div>
         </div>
     </header>
@@ -188,7 +201,7 @@
     <div class="filtro-container">
         <button class="btn-filtro activo" onclick="filtrar('todos')">Todos</button>
         <button class="btn-filtro" onclick="filtrar('especialidad')">Especialidades</button>
-        <button class="btn-filtro" onclick="filtrar('light')">Ligeras</button>
+        <button class="btn-filtro" onclick="filtrar('light')">Clasicos</button>
     </div>
 
     <main class="menu-grid" id="menu-container"></main>
@@ -275,7 +288,7 @@
                 <label class="opcion-entrega" id="label-domicilio">
                     <div style="display: flex; align-items: center;">
                         <input type="radio" name="tipo-entrega" value="domicilio" onchange="toggleDireccion()">
-                        <strong>🛵 Envío a domicilio</strong> &nbsp;(<span style="color: var(--verde-fuerte); font-weight: bold;">¡Gratis!</span>)
+                        <strong>🛵 Envío a domicilio</strong>  (<span style="color: var(--verde-fuerte); font-weight: bold;">¡Gratis!</span>)
                     </div>
                     <div id="alerta-compra-minima" style="color: var(--rojo-alerta); font-size: 0.85rem; display: none; margin-top: 8px; padding-left: 26px;">
                         ⚠️ Compra mínima de $<span id="minimo-display"></span> (Faltan $<span id="faltante-display"></span>)
@@ -298,7 +311,7 @@
     </div>
 
     <script>
-        const miNumeroWhatsApp = "524774902892"; 
+        const miNumeroWhatsApp = "524772401222"; 
         
         // El costo ahora es 0 internamente
         const COSTO_ENVIO_DOMICILIO = 0; 
@@ -307,7 +320,7 @@
         
         const LATITUD_NEGOCIO = 21.126127;   
         const LONGITUD_NEGOCIO = -101.612082; 
-        const RADIO_ENTREGA_KM = 5; 
+        const RADIO_ENTREGA_KM = 3; 
         
         const DIRECCION_NEGOCIO_TEXTO = "Blvd. Punta del Este León, Guanajuato"; 
         
@@ -318,8 +331,8 @@
            {
                 id: 1, 
                 nombre: "Bomba",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35, "Mediana": 45, "Grande": 80 },
+                descripcion: "Disfruta de una mezcla de jícama pepino piña picado limón sal chile cebolla vinagre y queso al gusto .",
+                precios: {  "Mediana (Medio)": 50, "Grande (Litro)": 85 },
                 categoria: "light",
                 imagen: "img/bom.png", 
                 ingredientesBase: [
@@ -342,8 +355,8 @@
            {
                 id: 2, 
                 nombre: "Collague con Papas",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 60, "Grande": 80 },
+                descripcion: "Disfruta de una mezcla de jícama pepino piña picado en charola con chips o papas de su elección limón sal chile cebolla vinagre y queso al gusto.",
+                precios: { "Chico": 70, "Grande": 90 },
                 categoria: "light",
                 imagen: "img/collapa.png", 
                 ingredientesBase: [
@@ -368,8 +381,8 @@
             {
                 id: 3, 
                 nombre: "Delicioso",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75, "Grande": 105 },
+                descripcion: "Disfruta de una mezcla de jícama y pepino picado con jitomate cilantro clamato (cacahuate camarón seco) cebolla salsa limón sal chile vinagre y queso al gusto.",
+                precios: { "Mediano (Medio)": 80, "Grande (Litro)": 110 },
                 categoria: "especialidad",
                 imagen: "img/deli.png", 
                 ingredientesBase: [
@@ -390,16 +403,11 @@
                 ]
             },
 
-
-
-
-
-            
             {
                 id: 4, 
                 nombre: "Mexicano",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75, "Grande": 105 },
+                descripcion: "Disfruta de una mezcla de Jícama y pepino picado con jitomate cilantro clamato (papas y Cueritos) cebolla sal chile salsa limón vinagre y queso al gusto.",
+                precios: { "Mediano (Medio)": 80, "Grande (Litro)": 110 },
                 categoria: "especialidad",
                 imagen: "img/deli.png", 
                 ingredientesBase: [
@@ -420,14 +428,11 @@
                 ]
             },
 
-
-
-
              {
                 id: 5, 
                 nombre: "Mar Y Tierra",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75, "Grande": 105 },
+                descripcion: "Disfruta de una mezcla de Jícama y pepino picado con jitomate cilantro clamato (cuerito y camarones seco) cebolla sal salsa chile limones vinagre y queso al gusto.",
+               precios: { "Mediano (Medio)": 80, "Grande (Litro)": 110 },
                 categoria: "especialidad",
                 imagen: "img/mar.png", 
                 ingredientesBase: [
@@ -448,19 +453,17 @@
                 ]
             },
 
-
-
-
             {
                 id: 6, 
                 nombre: "Sushi",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 85,},
+                descripcion: "Disfruta de Láminas delgadas de jícama rellenas de queso (piña o camarones seco) pepino cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 80 },
                 categoria: "especialidad",
                 imagen: "img/sus.png", 
                 ingredientesBase: [
                     "Jicama", "Pepino",,"Limon","Sal","Chile Picoso","Chile no Picoso","Queso","Salsas de la Casa",
-                    { nombre: "Papas",  opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
+                    
+                    { nombre: "Relleno",  opciones: ["Piña","Camaron seco", ] },
                    
                 ],
                 ingredientesExtra: [
@@ -476,19 +479,17 @@
                     
                 ]
             },
-
-
 
             {
                 id: 7, 
                 nombre: "Dedos Arabes",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75 },
+                descripcion: "Disfruta de Láminas delgadas de jícama rellenas de Jicama pepino piña y queso cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 75 },
                 categoria: "especialidad",
                 imagen: "img/dedos.png", 
                 ingredientesBase: [
                     "Jicama", "Pepino", "Piña","Cebolla","Limon","Sal","Chile Picoso","Chile no Picoso","Queso",
-                    { nombre: "Papas", opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
+                    
                    
                 ],
                 ingredientesExtra: [
@@ -505,18 +506,15 @@
                 ]
             },
 
-
-
-
             {
                 id: 8, 
                 nombre: "Termo Especial",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 120 },
+                descripcion: "Disfruta de una mezcla de jícama y pepino picado con jitomate, cilantro, clamato (papas, cacahuates, camarones y Cueritos), cebolla, salsa, limón, sal, chile, vinagre y queso al gusto.",
+                precios: { "Tamaño Único": 125 },
                 categoria: "especialidad",
                 imagen: "img/termo.png", 
                 ingredientesBase: [
-                    "Jicama", "Pepino", "Piña","Jitomate","Cebolla","Cilantro", "Clamato", "Jugo Maggie", "Sal de Ajo", "Polvo de Camaron","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso","Camarones","Cueritos",
+                    "Jicama", "Pepino","Jitomate","Cebolla","Cilantro", "Clamato", "Jugo Maggie", "Sal de Ajo", "Polvo de Camaron","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso","Camarones","Cueritos",
                    { nombre: "Cacahuates", opciones: ["HotNuts", "Japones", "HotNuts Fuego", ] },
                     { nombre: "Papas",  opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
                    
@@ -535,17 +533,15 @@
                 ]
             },
 
-
-
             {
                 id: 9, 
                 nombre: "Sopes",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 80},
+                descripcion: "Disfruta de Rebanadas pequeñas de jícama con pepino rallado con chips o papas de su elección cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 100},
                 categoria: "especialidad",
                 imagen: "img/sope.png", 
                 ingredientesBase: [
-                    "Jicama", "Pepino", "Piña","Cebolla","Salsa de botella","Limon","Sal","Chile Picoso","Chile no Picoso","Queso",
+                    "Jicama", "Pepino","Cebolla","Salsa de botella","Limon","Sal","Chile Picoso","Chile no Picoso","Queso",
                     { nombre: "Papas",  opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
                    
                 ],
@@ -563,14 +559,11 @@
                 ]
             },
 
-
-
-
             {
                 id: 10, 
                 nombre: "Crepa",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 85 },
+                descripcion: "Disfruta de 4 laminas de jicama, rellenas de pepino rallado, pico de gallo, cueritos y papas.",
+                precios: { "Tamaño Único": 100 },
                 categoria: "especialidad",
                 imagen: "img/crepa.png", 
                 ingredientesBase: [
@@ -592,14 +585,11 @@
                 ]
             },
 
-
-
-
             {
                 id: 11, 
                 nombre: "Caldo de Oso",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35, "Mediana": 45, "Grande": 80 },
+                descripcion: "Disfruta de una mezcla vinagre limon sal chile cebolla y queso al gusto.",
+                precios: { "Mediano (Medio)": 50, "Grande (Litro)": 85 },
                 categoria: "light",
                 imagen: "img/caldo.png", 
                 ingredientesBase: [
@@ -620,14 +610,11 @@
                 ]
             },
 
-
-
-
             {
                 id: 12, 
                 nombre: "Chalupa",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35,},
+                descripcion: "Disfruta de Un pepino partido a la mitad con cebolla sal limón vinagre chile y queso al gusto .",
+                precios: { "Tamaño Único": 50 },
                 categoria: "light",
                 imagen: "img/chalu.png", 
                 ingredientesBase: [
@@ -648,14 +635,11 @@
                 ]
             },
 
-
-
-
             {
                 id: 13, 
                 nombre: "Rebanada",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35 },
+                descripcion: "Disfruta de Una rebanada de jícama con cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 50 },
                 categoria: "light",
                 imagen: "img/reba.png", 
                 ingredientesBase: [
@@ -676,14 +660,11 @@
                 ]
             },
 
-
-
-            
             {
                 id: 14, 
                 nombre: "MEGA Sandwich",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75 },
+                descripcion: "Disfruta de 3 rebanadas de Jicama rellenas de pepino y Jicama rallada entre cada una cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 80 },
                 categoria: "light",
                 imagen: "img/club.png", 
                 ingredientesBase: [
@@ -704,16 +685,11 @@
                 ]
             },
 
-
-
-
-
-            
             {
                 id: 15, 
                 nombre: "Sandwich Hawaiano",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 55 },
+                descripcion: "Disfruta de Dos rebanadas de Jicama y una de piña en medio cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 70 },
                 categoria: "light",
                 imagen: "img/clubha.png", 
                 ingredientesBase: [
@@ -734,45 +710,13 @@
                 ]
             },
 
-
-
-
-
             
-            {
-                id: 16, 
-                nombre: "Tarantula",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 55 },
-                categoria: "light",
-                imagen: "img/desco1.png", 
-                ingredientesBase: [
-                    "Jicama", "Pepino","Cebolla","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
-                   
-                ],
-                ingredientesExtra: [
-                     { nombre: "Papas", precio: 25, opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
-                    { nombre: "Cacahuates", precio: 25, opciones: ["HotNuts", "Japones", "HotNuts Fuego", ] },
-                    { nombre: "Camaron seco porcion chica", precio: 20 },
-                    { nombre: "Camaron seco porcion grande", precio: 30 },
-                    { nombre: "Cueritos porcion chica", precio: 15 },
-                    { nombre: "Cueritos porcion grande", precio: 20 },
-                    {nombre: "Queso Extra",precio: 10},
-                    {nombre: "Queso Extra",precio: 15},
-                    {nombre: "Queso Extra",precio: 20},
-                    
-                ]
-            },
 
-
-
-
-            
-            {
+           {
                 id: 17, 
                 nombre: "Pico de gallo",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35, "Mediana": 45, "Grande": 60 },
+                descripcion: "Disfruta de una mezcla Jícama pepino y piña partido en trozos medianos con cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Chica": 50, "Grande": 75 },
                 categoria: "light",
                 imagen: "img/pico.png", 
                 ingredientesBase: [
@@ -793,15 +737,11 @@
                 ]
             },
 
-
-
-
-            
             {
                 id: 18, 
                 nombre: "Partida",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 70},
+                descripcion: "Disfruta de Trozos gruesos de jícama con cebolla sal limón vinagre chile y queso al gusto .",
+                precios: { "Chica": 60, "Grande": 80 },
                 categoria: "light",
                 imagen: "img/parti.png", 
                 ingredientesBase: [
@@ -822,15 +762,11 @@
                 ]
             },
 
-
-
-
-            
             {
                 id: 19, 
                 nombre: "Jungla",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75 },
+                descripcion: "Disfruta de Trozos gruesos de Jicama con pepino rallado encima y cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Chica": 65, "Grande": 80 },
                 categoria: "light",
                 imagen: "img/desco2.png", 
                 ingredientesBase: [
@@ -851,15 +787,11 @@
                 ]
             },
 
-
-
-
-            
             {
                 id: 20, 
                 nombre: "Cohete",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35},
+                descripcion: "Disfruta de Medio pepino con palitos de jícama al centro con cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 50},
                 categoria: "light",
                 imagen: "img/cohe.png", 
                 ingredientesBase: [
@@ -880,13 +812,11 @@
                 ]
             },
 
-
-
            {
                 id: 21, 
                 nombre: "Flor",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35},
+                descripcion: "Disfruta de Un pepino partido en forma de flor con sal chile y limón al gusto .",
+                precios: { "Tamaño Único": 45},
                 categoria: "light",
                 imagen: "img/flor.png", 
                 ingredientesBase: [
@@ -907,17 +837,15 @@
                 ]
             },
 
-
-
              {
                 id: 22, 
                 nombre: "Sandwich",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 50},
+                descripcion: "Disfruta de Dos rebanadas de Jicama com relleno de pepino y piña picado en medio cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 65},
                 categoria: "light",
                 imagen: "img/sand.png", 
                 ingredientesBase: [
-                    "Jicama", "Pepino","Cebolla","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
+                    "Jicama", "Pepino","piña","Cebolla","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
                    
                 ],
                 ingredientesExtra: [
@@ -934,13 +862,11 @@
                 ]
             },
 
-
-
              {
                 id: 23, 
                 nombre: "MIX",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 75},
+                descripcion: "Disfruta de Trozo de jícama pepino y piña con pepino y jícama rallado encima con cebolla sal limón vinagre chile y queso al gusto.",
+                 precios: { "Chica": 65, "Grande": 80 },
                 categoria: "light",
                 imagen: "img/mix.png", 
                 ingredientesBase: [
@@ -961,20 +887,15 @@
                 ]
             },
 
-
-
-
-
-
              {
                 id: 24, 
-                nombre: "Preparado para Michelada",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 25, "Mediana": 40,},
+                nombre: "Preparado para Michelada (No incluye cerveza)",
+                descripcion: "Disfruta de una mezcla de Clamato sal limón salsas negras chile hielo un toque de vinagre de la casa salsa y una varita de pepino.",
+                precios: { "Mediano (Medio)": 20, "Grande (Litro)": 35,},
                 categoria: "especialidad",
-                imagen: "img/prepa.png", 
+                imagen: "img/pre1.png", 
                 ingredientesBase: [
-                    "Clamato","Jugo Maggie","Salsa inglesa", "Salsa de botella","Tajin","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Rodaja de pepino",
+                    "Clamato","Jugo Maggie","Salsa inglesa", "Salsa de botella","Tajin","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Varita de pepino",
                    
                 ],
                 ingredientesExtra: [
@@ -991,13 +912,11 @@
                 ]
             },
 
-
-
  {
                 id: 25, 
                 nombre: "Araña",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 55},
+                descripcion: "Disfruta de Un pepino partido a la mitad con jícama rallada encima con cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 70},
                 categoria: "light",
                 imagen: "img/chalu.png", 
                 ingredientesBase: [
@@ -1018,12 +937,11 @@
                 ]
             },
 
-
  {
                 id: 26, 
                 nombre: "Club Sandwich",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 55},
+                descripcion: "Disfruta de 3 rebanadas de Jicama rellenas de piña y pepino picado entre cada una con cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Tamaño Único": 80},
                 categoria: "light",
                 imagen: "img/club.png", 
                 ingredientesBase: [
@@ -1044,12 +962,11 @@
                 ]
             },
 
-
              {
                 id: 27, 
                 nombre: "Vaso Raro",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 85, "Grande": 105,},
+                descripcion: "Disfruta de una mezcla Jícama y pepino rallado con salsa cacahuates y papas de su elección Chile limón cebolla sal vinagre y queso al gusto.",
+                precios: { "Mediano (Medio)": 90, "Grande (Litro)": 120,},
                 categoria: "especialidad",
                 imagen: "img/vasor.png", 
                 ingredientesBase: [
@@ -1071,13 +988,11 @@
                 ]
             },
 
-
-
             {
                 id: 28, 
-                nombre: "Espaguetti con Papas",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 60, "Mediana":80,"Grande": 95 },
+                nombre: "Espaguetti",
+                descripcion: "Disfruta de una mezcla fresca de Jicama y/o pepino rallado con cebolla sal limón vinagre chile y queso al gusto.",
+                precios: { "Chica": 50,"Grande": 75 },
                 categoria: "light",
                 imagen: "img/esp.png", 
                 ingredientesBase: [
@@ -1099,13 +1014,11 @@
                 ]
             },
 
-
-
              {
                 id: 29, 
                 nombre: "Cacahuates al gusto",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 35},
+                descripcion: "Disfruta de unos Cacahuates de tu elección preparados con cebolla sal limón vinagre salsa chile y queso al gusto.",
+                precios: { "Tamaño Único": 50},
                 categoria: "light",
                 imagen: "img/cacah.png", 
                 ingredientesBase: [
@@ -1127,12 +1040,11 @@
                 ]
             },
 
-
             {
                 id: 30, 
                 nombre: "Papas Locas",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 60},
+                descripcion: "Disfruta de unas papas de tu eleccion cubiertas de Jícama y pepino rallado Limón sal cebolla salsa chile vinagre y queso al gusto .",
+                precios: { "Tamaño Único": 75},
                 categoria: "especialidad",
                 imagen: "img/papa.png", 
                 ingredientesBase: [
@@ -1154,13 +1066,11 @@
                 ]
             },
 
-
-
             {
                 id: 31, 
                 nombre: "Vaso Loco",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 65, "Grande": 95,},
+                descripcion: "Disfruta de una mezcla de Jícama y pepino rallado con cacahuates de tu elección Chile limón cebolla sal vinagre y queso al gusto.",
+                precios: { "Mediano": 75, "Grande": 95,},
                 categoria: "especialidad",
                 imagen: "img/vasol.png", 
                 ingredientesBase: [
@@ -1185,13 +1095,13 @@
              {
                 id: 32, 
                 nombre: "Encuerada",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 65, "Grande": 95,},
+                descripcion: "Disfruta de una mezcla de Rodajas de pepino al rededor del plato con unas papas de tu elección con Jícama rallada con jitomate Cilantro y cebolla muchos Cueritos sal limón vinagre salsa clamato  chile y queso al gusto.",
+                precios: { "Tamaño Unico": 100},
                 categoria: "especialidad",
                 imagen: "img/desco.png", 
                 ingredientesBase: [
-                    "Jicama", "Pepino","Salsa de botella","Cebolla fileteada", "Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
-{ nombre: "Cacahuates", opciones: ["HotNuts", "Japones", "HotNuts Fuego", ] },
+                    "Pepino","Jicama","Salsa de botella","Clamato","Cebolla","cilantro","Cueritos", "Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
+ { nombre: "Papas", precio: 25, opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
                     
                 ],
                 ingredientesExtra: [
@@ -1211,13 +1121,13 @@
              {
                 id: 33, 
                 nombre: "Aguachile",
-                descripcion: "Disfruta de una mezcla fresca de hojas selectas, acompañadas de jitomates jugosos, zanahoria crujiente y nuestro aderezo especial de la casa. Ideal para una comida ligera y nutritiva.",
-                precios: { "Chica": 65, "Grande": 95,},
+                descripcion: "Disfruta de una mezcla fresca de Trozos de pepino, piña, jitomate, cilantro, cebolla, camarón, queso. Revuelto con clamato chile limón salsa vinagre sal al gusto.",
+                precios: { "Tamaño Unico": 95},
                 categoria: "especialidad",
                 imagen: "img/agua.png", 
                 ingredientesBase: [
-                    "Jicama", "Pepino","Salsa de botella","Cebolla fileteada", "Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
-{ nombre: "Cacahuates", opciones: ["HotNuts", "Japones", "HotNuts Fuego", ] },
+             "Pepino","Piña","Jitomate","Cilantro","Camaron","Cebolla","Salsa de botella", "Clamato","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
+
                     
                 ],
                 ingredientesExtra: [
@@ -1234,15 +1144,6 @@
                 ]
             },
 
-
-
-
-
-
-
-
-
-
         ];
 
         let pedido = []; 
@@ -1258,7 +1159,7 @@
         function mostrarMenu(lista) {
             container.innerHTML = '';
             lista.forEach(p => {
-                const precioMinimo = p.precios["Chica"];
+                const precioMinimo = Math.min(...Object.values(p.precios));
                 const card = `
                     <div class="tarjeta">
                         <div class="contenedor-imagen" onclick="abrirModalInfo(${p.id})" title="Ver detalles del platillo">
@@ -1320,8 +1221,12 @@
             
             const listaTamanos = document.getElementById('lista-tamanos');
             listaTamanos.innerHTML = '';
+            
+            let esPrimerTamano = true;
             for (const [tamano, precio] of Object.entries(platilloActivoEnModal.precios)) {
-                const isChecked = tamano === "Mediana" ? "checked" : "";
+                const isChecked = esPrimerTamano ? "checked" : "";
+                esPrimerTamano = false;
+                
                 listaTamanos.innerHTML += `
                     <div class="item-ingrediente">
                         <label>
@@ -1335,16 +1240,28 @@
             const listaBase = document.getElementById('lista-base');
             listaBase.innerHTML = '';
             platilloActivoEnModal.ingredientesBase.forEach((ing, index) => {
+                
+                // VERIFICAMOS SI ES PAPAS O CACAHUATES PARA APLICAR DESCUENTO
+                let nombreIng = typeof ing === 'string' ? ing : ing.nombre;
+                let descuento = (nombreIng.includes('Papas') || nombreIng.includes('Cacahuates')) ? 25 : 0;
+                let textoDescuento = descuento > 0 ? `<small style="color: var(--rojo-alerta); font-weight: bold; margin-left: 5px;">(-$${descuento})</small>` : '';
+
                 if (typeof ing === 'string') {
-                    listaBase.innerHTML += `<div class="item-ingrediente"><label><input type="checkbox" class="check-base" value="${ing}" checked> ${ing}</label></div>`;
+                    listaBase.innerHTML += `
+                        <div class="item-ingrediente">
+                            <label>
+                                <input type="checkbox" class="check-base" value="${ing}" data-descuento="${descuento}" checked onchange="recalcularTotal()"> 
+                                ${ing} ${textoDescuento}
+                            </label>
+                        </div>`;
                 } else {
                     const selectId = `base-opt-${index}`;
                     const opcionesHtml = ing.opciones.map(opt => `<option value="${opt}">${opt}</option>`).join('');
                     listaBase.innerHTML += `
                         <div class="item-ingrediente">
                             <label style="flex-grow:0;">
-                                <input type="checkbox" class="check-base" value="${ing.nombre}" data-has-options="true" data-select-id="${selectId}" checked onchange="toggleSelectSabor(this, '${selectId}')"> 
-                                ${ing.nombre}
+                                <input type="checkbox" class="check-base" value="${ing.nombre}" data-descuento="${descuento}" data-has-options="true" data-select-id="${selectId}" checked onchange="toggleSelectSabor(this, '${selectId}'); recalcularTotal();"> 
+                                ${ing.nombre} ${textoDescuento}
                             </label>
                             <select id="${selectId}" class="select-opciones">${opcionesHtml}</select>
                         </div>`;
@@ -1378,7 +1295,20 @@
         function recalcularTotal() {
             const tamanoSeleccionado = document.querySelector('.radio-tamano:checked');
             let total = tamanoSeleccionado ? parseFloat(tamanoSeleccionado.getAttribute('data-precio')) : 0;
-            document.querySelectorAll('.check-extra:checked').forEach(checkbox => { total += parseFloat(checkbox.getAttribute('data-precio')); });
+            
+            // Sumar los extras seleccionados
+            document.querySelectorAll('.check-extra:checked').forEach(checkbox => { 
+                total += parseFloat(checkbox.getAttribute('data-precio')); 
+            });
+
+            // Restar descuento si quitaron un ingrediente base que aplica (Papas o Cacahuates)
+            document.querySelectorAll('.check-base:not(:checked)').forEach(checkbox => {
+                total -= parseFloat(checkbox.getAttribute('data-descuento')) || 0;
+            });
+
+            // Evitar que por algún error el total sea menor a 0
+            if (total < 0) total = 0;
+
             document.getElementById('modal-precio-total').innerText = total;
         }
 
