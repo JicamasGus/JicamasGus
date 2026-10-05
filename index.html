@@ -318,7 +318,8 @@
         // El costo ahora es 0 internamente
         const COSTO_ENVIO_DOMICILIO = 0; 
         
-        const COMPRA_MINIMA_DOMICILIO = 150; 
+        // MODIFICACIÓN 1: Monto mínimo de compra a 200
+        const COMPRA_MINIMA_DOMICILIO = 200; 
         
         const LATITUD_NEGOCIO = 21.126127;   
         const LONGITUD_NEGOCIO = -101.612082; 
@@ -330,7 +331,7 @@
         document.getElementById('minimo-display').innerText = COMPRA_MINIMA_DOMICILIO;
 
         const platillos = [
-           {
+            {
                 id: 1, 
                 nombre: "Bomba",
                 descripcion: "Disfruta de una mezcla de jícama pepino piña picado limón sal chile cebolla vinagre y queso al gusto .",
@@ -434,7 +435,7 @@
                 id: 5, 
                 nombre: "Mar Y Tierra",
                 descripcion: "Disfruta de una mezcla de Jícama y pepino picado con jitomate cilantro clamato (cuerito y camarones seco) cebolla sal salsa chile limones vinagre y queso al gusto.",
-               precios: { "Mediano (Medio)": 80, "Grande (Litro)": 110 },
+                precios: { "Mediano (Medio)": 80, "Grande (Litro)": 110 },
                 categoria: "especialidad",
                 imagen: "img/mar.png", 
                 ingredientesBase: [
@@ -1000,7 +1001,7 @@
                 ingredientesBase: [
                     "Jicama", "Pepino","Cebolla","Limon","Sal","Chile Picoso","Chile no Picoso","Vinagre","Queso",
                      
-                   
+                    
                 ],
                 ingredientesExtra: [
                     { nombre: "Papas", precio: 25, opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
@@ -1026,7 +1027,7 @@
                 ingredientesBase: [
                     { nombre: "Cacahuates",  opciones: ["HotNuts", "Japones", "HotNuts Fuego", ] },
                     "Cebolla","Limon","Sal","Chile Picoso","Chile no Picoso","Salsa de botella","Vinagre","Queso",
-                   
+                    
                 ],
                 ingredientesExtra: [
                      { nombre: "Papas", precio: 25, opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
@@ -1052,7 +1053,7 @@
                 ingredientesBase: [
                     { nombre: "Papas", precio: 25, opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
                     "Jicama","Pepino","Cebolla fileteada","Limon","Sal","Chile Picoso","Chile no Picoso","Salsa de botella","Vinagre","Queso",
-                   
+                    
                 ],
                 ingredientesExtra: [
                      { nombre: "Papas", precio: 25, opciones: ["Tostachos","Chips Jalapeño", "Takis Fuego"," Chips Fuego", "Chips Toreadas" ,"Chips de Sal", "Chips Adobadas", ] },
@@ -1243,9 +1244,14 @@
             listaBase.innerHTML = '';
             platilloActivoEnModal.ingredientesBase.forEach((ing, index) => {
                 
-                // VERIFICAMOS SI ES PAPAS O CACAHUATES PARA APLICAR DESCUENTO
+                // MODIFICACIÓN 2: Ajuste de descuentos para papas y cacahuates (Ambos en $20)
                 let nombreIng = typeof ing === 'string' ? ing : ing.nombre;
-                let descuento = (nombreIng.includes('Papas') || nombreIng.includes('Cacahuates')) ? 25 : 0;
+                let descuento = 0;
+                
+                if (nombreIng.includes('Papas') || nombreIng.includes('Cacahuates')) {
+                    descuento = 20; // Si quitan papas o cacahuates base, se descuentan $20
+                }
+                
                 let textoDescuento = descuento > 0 ? `<small style="color: var(--rojo-alerta); font-weight: bold; margin-left: 5px;">(-$${descuento})</small>` : '';
 
                 if (typeof ing === 'string') {
